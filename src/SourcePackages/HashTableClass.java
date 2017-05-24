@@ -1,14 +1,9 @@
 package SourcePackages;
 
+import AnalyticsPackage.WordAnalytics;
 import org.apache.commons.io.IOUtils;
-import org.jetbrains.annotations.Contract;
-
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by Echo01 on 5/19/2017.
@@ -23,45 +18,21 @@ public class HashTableClass {
 
     public HashTableClass(String location) throws IOException {
         this.location = location;
-        String temp1,temp2;
+        String temp1;
         try(FileInputStream FIS = new FileInputStream(location)){
             temp1= IOUtils.toString(FIS,"UTF-8");
-            //temp2=temp1.replaceAll("[,?.!;:\\r\\n]"," ");
             System.out.print(temp1);
             System.out.println("------------------------------------------------");
             System.out.println();
         }
         String[] tempCatchString = temp1.split("[,?.!;:\\r\\n\\s]+");
         this.catchString=tempCatchString;
-        //this.catchString = tempCatchString;
         this.Htable = new HashNodeClass[size];
         for(int i=0;i<size;i++){
             this.Htable[i] = null;
         }
-        for(String x : this.clean(tempCatchString)){
-            System.out.printf("%s ",x);
-        }
-        System.out.println();
-        System.out.println("////////////////////////////////////////////");
-        this.insertIntoHashTable(this.clean(tempCatchString));
-    }
-    @Contract(pure = true)
-    public static String[] clean(String[] allElements) {
-        // 1 : count
-        int n = 0;
-        for (int i = 0; i < allElements.length; i++)
-            if (allElements[i] != "") n++;
-
-        // 2 : allocate new array
-        String[] _localAllElements = new String[n];
-
-        // 3 : copy not null elements
-        int j = 0;
-        for (int i = 0; i < allElements.length; i++)
-            if (allElements[i] != "")
-                _localAllElements[j++] = allElements[i];
-
-        return _localAllElements;
+        this.insertIntoHashTable(tempCatchString);
+        this.printTop10(WordAnalytics.top10Numbers(WordAnalytics.convertToArrayList(this.Htable)));
     }
 
     public int hash32(final String k) {
@@ -74,20 +45,6 @@ public class HashTableClass {
         }
         if (rv < 0) rv &= ~0x80000000;
         return rv % size;
-
-        /*int prime = 31;
-        int hash = 0;
-
-        for(int i = 0; i < k.length(); i++)
-        {
-            hash *= prime;
-            hash ^= k.charAt(i);
-        }
-
-        if (hash < 0) hash &= ~0x80000000;
-            //hash *= -1;
-
-        return hash % size;*/
     }
 
     public void insertIntoHashTable(String[] input){
@@ -100,6 +57,12 @@ public class HashTableClass {
             }else{
                 Htable[obtHashCode].updateNodeEntry(temp,obtHashCode);
             }
+        }
+    }
+    public void printTop10(LLNode[] input){
+        System.out.println("Top 10 word count");
+        for(int i=0;i<10;i++){
+            System.out.println(input[i].getWord()+" "+input[i].getWordCount());
         }
     }
 

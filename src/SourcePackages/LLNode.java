@@ -1,9 +1,11 @@
 package SourcePackages;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Created by Echo01 on 5/19/2017.
  */
-public class LLNode {
+public class LLNode implements Comparable<LLNode> {
     private String word;
     private int wordCount=0;
     LLNode(String word){
@@ -41,5 +43,11 @@ public class LLNode {
     @Override
     public int hashCode() {
         return getWord().hashCode();
+    }
+
+    @Override
+    public int compareTo(@NotNull LLNode o) {
+        int compareWord = o.getWordCount();
+        return this.wordCount-compareWord;
     }
 }

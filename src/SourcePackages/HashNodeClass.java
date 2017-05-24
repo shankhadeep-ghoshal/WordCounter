@@ -41,7 +41,7 @@ public class HashNodeClass {
         return HashValue;
     }
 
-    /*public void setHashValue(int hashValue) {
+    public void setHashValue(int hashValue) {
         HashValue = hashValue;
     }
 
@@ -51,5 +51,5 @@ public class HashNodeClass {
 
     public void setLLNEntry(LinkedList<LLNode> LLNEntry) {
         this.LLNEntry = LLNEntry;
-    }*/
+    }
 }
