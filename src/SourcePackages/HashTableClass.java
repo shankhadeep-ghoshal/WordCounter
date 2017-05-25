@@ -4,14 +4,15 @@ import AnalyticsPackage.WordAnalytics;
 import org.apache.commons.io.IOUtils;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Created by Echo01 on 5/19/2017.
  */
-public class HashTableClass {
+public class HashTableClass implements java.io.Serializable {
     private HashNodeClass[] Htable;
-    String location;
-    String[] catchString;
+    private String location;
+    private String[] catchString;
     private final Integer size = 1000;
     private static final int FNV_32_INIT = 0x811c9dc5;
     private static final int FNV_32_PRIME = 0x01000193;
@@ -66,4 +67,65 @@ public class HashTableClass {
         }
     }
 
+    public HashNodeClass[] getHtable() {
+        return Htable;
+    }
+
+    public void setHtable(HashNodeClass[] htable) {
+        Htable = htable;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String[] getCatchString() {
+        return catchString;
+    }
+
+    public void setCatchString(String[] catchString) {
+        this.catchString = catchString;
+    }
+
+    public Integer getSize() {
+        return size;
+    }
+
+    @Override
+    public String toString() {
+        return "HashTableClass{" +
+                "Htable=" + Arrays.toString(Htable) +
+                ", location='" + location + '\'' +
+                ", catchString=" + Arrays.toString(catchString) +
+                ", size=" + size +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof HashTableClass)) return false;
+
+        HashTableClass that = (HashTableClass) o;
+
+        // Probably incorrect - comparing Object[] arrays with Arrays.equals
+        if (!Arrays.equals(getHtable(), that.getHtable())) return false;
+        if (!getLocation().equals(that.getLocation())) return false;
+        // Probably incorrect - comparing Object[] arrays with Arrays.equals
+        if (!Arrays.equals(getCatchString(), that.getCatchString())) return false;
+        return getSize().equals(that.getSize());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Arrays.hashCode(getHtable());
+        result = 31 * result + getLocation().hashCode();
+        result = 31 * result + Arrays.hashCode(getCatchString());
+        result = 31 * result + getSize().hashCode();
+        return result;
+    }
 }

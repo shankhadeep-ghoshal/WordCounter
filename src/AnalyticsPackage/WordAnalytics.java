@@ -5,14 +5,13 @@ import SourcePackages.LLNode;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 /**
  * Created by Echo01 on 5/24/2017.
  */
-public class WordAnalytics {
+public class WordAnalytics implements java.io.Serializable {
     @Nullable
     @Contract(pure = true)
     public static ArrayList<LLNode> convertToArrayList(HashNodeClass[] input){

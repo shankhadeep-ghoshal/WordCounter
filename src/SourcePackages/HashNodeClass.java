@@ -5,7 +5,7 @@ import java.util.LinkedList;
 /**
  * Created by Echo01 on 5/19/2017.
  */
-public class HashNodeClass {
+public class HashNodeClass implements java.io.Serializable {
     private int HashValue;
     private LinkedList<LLNode> LLNEntry;
 
@@ -19,7 +19,6 @@ public class HashNodeClass {
         System.out.println("Record from "+this.getHashValue()+" inserted for the first time for "+input);
     }
     public void updateNodeEntry(String input,int HashValue){
-        //the following code throws a java.util.ConcurrentModificationException
         this.HashValue=HashValue;
         LinkedList<LLNode> temporaryList = new LinkedList<>();
         for(LLNode obj : LLNEntry){
@@ -30,7 +29,6 @@ public class HashNodeClass {
             }
             else {
                 temporaryList.add(new LLNode(input));
-                //LLNEntry.add(new LLNode(input));
                 System.out.println("Hash algo collision encountered for " + input);
             }
         }
@@ -51,5 +49,31 @@ public class HashNodeClass {
 
     public void setLLNEntry(LinkedList<LLNode> LLNEntry) {
         this.LLNEntry = LLNEntry;
+    }
+
+    @Override
+    public String toString() {
+        return "HashNodeClass{" +
+                "HashValue=" + HashValue +
+                ", LLNEntry=" + LLNEntry +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof HashNodeClass)) return false;
+
+        HashNodeClass that = (HashNodeClass) o;
+
+        if (getHashValue() != that.getHashValue()) return false;
+        return getLLNEntry().equals(that.getLLNEntry());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getHashValue();
+        result = 31 * result + getLLNEntry().hashCode();
+        return result;
     }
 }
