@@ -112,12 +112,9 @@ public class HashTableClass implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "HashTableClass{" +
-                "Htable=" + Arrays.toString(Htable) +
-                ", location='" + location + '\'' +
-                ", catchString=" + Arrays.toString(catchString) +
-                ", size=" + size +
-                '}';
+        String[] str = WordAnalytics.HashArrayToString(getHtable());
+        final String s = str.toString();
+        return s;
     }
 
     @Override
