@@ -1,5 +1,4 @@
 package AnalyticsPackage;
-
 import SourcePackages.HashNodeClass;
 import SourcePackages.LLNode;
 import org.jetbrains.annotations.Contract;
@@ -8,9 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by Echo01 on 5/24/2017.
- */
 public class WordAnalytics implements java.io.Serializable {
     @Nullable
     @Contract(pure = true)
@@ -36,5 +32,15 @@ public class WordAnalytics implements java.io.Serializable {
             nodeArray[i] = temp.get(i);
         }
         return nodeArray;
+    }
+    public static String[] HashArrayToString(HashNodeClass[] input){
+        int k=input.length;
+        String[] strArr = new String[k];
+        for(int i=0;i<k;i++){
+            if(input[i]!=null){
+                for(LLNode temp : input[i].getLLNEntry())strArr[i]=temp.getWord()+" ";
+            }
+        }
+        return strArr;
     }
 }

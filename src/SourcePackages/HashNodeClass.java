@@ -1,10 +1,6 @@
 package SourcePackages;
-
 import java.util.LinkedList;
 
-/**
- * Created by Echo01 on 5/19/2017.
- */
 public class HashNodeClass implements java.io.Serializable {
     private int HashValue;
     private LinkedList<LLNode> LLNEntry;

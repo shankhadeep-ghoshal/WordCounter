@@ -1,16 +1,12 @@
 package TestPackages;
-
-
-
+import AnalyticsPackage.WordAnalytics;
 import SourcePackages.HashTableClass;
-
 import java.io.*;
 
-/**
- * Created by Echo01 on 5/17/2017.
- */
 public class TestClass {
     public static void main(String[] args)throws IOException {
-        new HashTableClass("D:\\Programing practice\\JavaProj\\StringHashTableAssignment\\res\\Demo.txt");
+       HashTableClass a =  new HashTableClass("D:\\Programing " +
+               "practice\\JavaProj\\StringHashTableAssignment\\res\\Demo.txt");
+       a.printTop10(WordAnalytics.top10Numbers(WordAnalytics.convertToArrayList(a.getHtable())));
     }
 }

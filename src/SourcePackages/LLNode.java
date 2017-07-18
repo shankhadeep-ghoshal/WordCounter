@@ -1,10 +1,6 @@
 package SourcePackages;
-
 import org.jetbrains.annotations.NotNull;
 
-/**
- * Created by Echo01 on 5/19/2017.
- */
 public class LLNode implements Comparable<LLNode>,java.io.Serializable {
     private String word;
     private int wordCount=0;

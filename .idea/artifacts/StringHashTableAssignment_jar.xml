@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="StringHashTableAssignment:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/StringHashTableAssignment_jar</output-path>
+    <root id="archive" name="StringHashTableAssignment.jar">
+      <element id="module-output" name="StringHashTableAssignment" />
+      <element id="extracted-dir" path="$APPLICATION_HOME_DIR$/redist/annotations-java8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/az/commons-io-2.5-bin/commons-io-2.5/commons-io-2.5.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

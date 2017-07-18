@@ -1,21 +1,35 @@
 package SourcePackages;
-
 import AnalyticsPackage.WordAnalytics;
 import org.apache.commons.io.IOUtils;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
-/**
- * Created by Echo01 on 5/19/2017.
- */
 public class HashTableClass implements java.io.Serializable {
     private HashNodeClass[] Htable;
     private String location;
     private String[] catchString;
-    private final Integer size = 1000;
+    private Integer size;
     private static final int FNV_32_INIT = 0x811c9dc5;
     private static final int FNV_32_PRIME = 0x01000193;
+
+    public HashTableClass(){
+        this.Htable = null;
+        this.size = -1;
+        for (String s : this.catchString = null);
+        this.location=null;
+    }
+
+    public HashTableClass(String input,int size){
+        this.size=input.length()+100;
+        String[] tempCatchString = input.split("[-_,?.!;:\\r\\n\\s]+");
+        this.catchString=tempCatchString;
+        this.Htable = new HashNodeClass[size];
+        for(int i=0;i<size;i++){
+            this.Htable[i]=null;
+        }
+        this.insertIntoHashTable(tempCatchString);
+    }
 
     public HashTableClass(String location) throws IOException {
         this.location = location;
@@ -26,14 +40,15 @@ public class HashTableClass implements java.io.Serializable {
             System.out.println("------------------------------------------------");
             System.out.println();
         }
-        String[] tempCatchString = temp1.split("[,?.!;:\\r\\n\\s]+");
+        this.size=temp1.length();
+        String[] tempCatchString = temp1.split("[-_,?.!;:\\r\\n\\s]+");
         this.catchString=tempCatchString;
         this.Htable = new HashNodeClass[size];
         for(int i=0;i<size;i++){
             this.Htable[i] = null;
         }
         this.insertIntoHashTable(tempCatchString);
-        this.printTop10(WordAnalytics.top10Numbers(WordAnalytics.convertToArrayList(this.Htable)));
+        //this.printTop10(WordAnalytics.top10Numbers(WordAnalytics.convertToArrayList(this.Htable)));
     }
 
     public int hash32(final String k) {
