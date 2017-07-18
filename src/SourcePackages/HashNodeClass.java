@@ -7,12 +7,12 @@ public class HashNodeClass implements java.io.Serializable {
 
     public HashNodeClass() {
         LLNEntry = new LinkedList<>();
-        System.out.println("Linked List Empty");
+        //System.out.println("Linked List Empty");
     }
     public void insertNewNode(String input,int HashValue){
         this.HashValue =HashValue;
         LLNEntry.add(new LLNode(input));
-        System.out.println("Record from "+this.getHashValue()+" inserted for the first time for "+input);
+        //System.out.println("Record from "+this.getHashValue()+" inserted for the first time for "+input);
     }
     public void updateNodeEntry(String input,int HashValue){
         this.HashValue=HashValue;
@@ -20,12 +20,12 @@ public class HashNodeClass implements java.io.Serializable {
         for(LLNode obj : LLNEntry){
             if(input.equalsIgnoreCase(obj.getWord())){
                 obj.incrementWordCount();
-                System.out.println("Word count increased for " + input);
-                System.out.println(obj.getWordCount());
+                //System.out.println("Word count increased for " + input);
+                //System.out.println(obj.getWordCount());
             }
             else {
                 temporaryList.add(new LLNode(input));
-                System.out.println("Hash algo collision encountered for " + input);
+                //System.out.println("Hash algo collision encountered for " + input);
             }
         }
         LLNEntry.addAll(temporaryList);

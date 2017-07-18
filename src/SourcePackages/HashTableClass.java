@@ -36,9 +36,6 @@ public class HashTableClass implements java.io.Serializable {
         String temp1;
         try(FileInputStream FIS = new FileInputStream(location)){
             temp1= IOUtils.toString(FIS,"UTF-8");
-            System.out.print(temp1);
-            System.out.println("------------------------------------------------");
-            System.out.println();
         }
         this.size=temp1.length();
         String[] tempCatchString = temp1.split("[-_,?.!;:\\r\\n\\s]+");
@@ -125,11 +122,12 @@ public class HashTableClass implements java.io.Serializable {
         HashTableClass that = (HashTableClass) o;
 
         // Probably incorrect - comparing Object[] arrays with Arrays.equals
-        if (!Arrays.equals(getHtable(), that.getHtable())) return false;
-        if (!getLocation().equals(that.getLocation())) return false;
+        //if (Arrays.equals(WordAnalytics.HashArrayToString(getHtable()), WordAnalytics.HashArrayToString(that.getHtable())))
+            //return true;
+        //if (!getLocation().equals(that.getLocation())) return false;
         // Probably incorrect - comparing Object[] arrays with Arrays.equals
-        if (!Arrays.equals(getCatchString(), that.getCatchString())) return false;
-        return getSize().equals(that.getSize());
+        if (Arrays.equals(getCatchString(), that.getCatchString())) return true;
+        return false;
     }
 
     @Override
